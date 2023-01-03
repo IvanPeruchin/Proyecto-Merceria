@@ -33,4 +33,12 @@ public class Producto{
     public void SetPrecio(int precio){
         this.precio = precio;
     }
+
+    @Override
+	public String toString(){
+		String res = "";
+        res += "Precio: $" + precio;
+        res += ", Cantidad: " + cant;
+        return res;
+	}
 }
