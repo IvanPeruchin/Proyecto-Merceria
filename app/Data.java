@@ -40,15 +40,19 @@ public class Data{
                     articulo.Setcant(cantidad);
                     producto.put(name, articulo);
 
-                    aux.setNext(nodo);
-                    nodo.setNext(null); 
+                    aux.setNext(nodo); 
                     cant++;                   
                 }
             } else {
                 System.out.println("Producto ya cargado. \n");
             }   
         }
+
+        public void aumentarPrecio(String name, int aumento){
+            (producto.get(name)).UpdatePrecio(aumento);
+        }
         
+        //No anda
         public void eliminarProducto(String name){  
             Nodo<String> elim = new Nodo<String>();
         
@@ -56,7 +60,7 @@ public class Data{
                 System.out.println("Sin articulos");
             } else{ 
                 elim = head;
-                if(!(head.getNext().getInfo().equals(name))){
+                if(!(head.getInfo().equals(name))){
                     System.out.println("entre al if");
                     while((name.equals(elim.getInfo())) && (elim != null)){
                         elim.setNext(elim.getNext());

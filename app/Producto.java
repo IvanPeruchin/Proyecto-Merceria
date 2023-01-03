@@ -34,6 +34,10 @@ public class Producto{
         this.precio = precio;
     }
 
+    public void UpdatePrecio(int aumento){
+        precio = precio + ((precio * aumento)/100);
+    }
+
     @Override
 	public String toString(){
 		String res = "";

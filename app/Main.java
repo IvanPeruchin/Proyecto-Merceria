@@ -13,10 +13,15 @@ public class Main{
        cola1.agregarProducto("Aguja", precio, cant);
        System.out.println(cola1);
 
+       cola1.aumentarPrecio("Pompon", 50);
+       cola1.aumentarPrecio("Lana", 20);
+       cola1.aumentarPrecio("Aguja", 10);
+       System.out.println(cola1);
 
-       //cola1.eliminarProducto("Pompon");
+       cola1.eliminarProducto("Aguja");
        System.out.println(cola1);
        
+
       
    }
 }
