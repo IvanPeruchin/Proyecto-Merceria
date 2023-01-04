@@ -5,10 +5,10 @@ package app;
 */
 public class Producto{
 
-    private int precio;
+    private float precio;
     private int cant; 
 
-    public Producto(int cant, int precio){
+    public Producto(int cant, float precio){
         this.cant = cant;
         this.precio = precio;
     }
@@ -22,7 +22,7 @@ public class Producto{
         return cant;
     }
 
-    public int GetPrecio(){
+    public float GetPrecio(){
         return precio;
     }
 
@@ -30,12 +30,24 @@ public class Producto{
         this.cant = cant;
     }
 
-    public void SetPrecio(int precio){
+    public void SetPrecio(float precio){
         this.precio = precio;
     }
 
     public void UpdatePrecio(int aumento){
         precio = precio + ((precio * aumento)/100);
+    }
+
+    public void Stock(int cant){
+        this.cant = this.cant - cant;
+    }
+
+    public void UpdateStock(int cant){
+        this.cant = this.cant + cant;
+    }
+
+    public void ChangePrecio(float precio){
+        this.precio = precio;
     }
 
     @Override

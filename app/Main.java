@@ -16,11 +16,17 @@ public class Main{
        cola1.aumentarPrecio("Pompon", 50);
        cola1.aumentarPrecio("Lana", 20);
        cola1.aumentarPrecio("Aguja", 10);
-       System.out.println(cola1);
 
-       cola1.eliminarProducto("Aguja");
+       cola1.ventas("Lana", 2);
+       cola1.ventas("Pompon", 1);
+       cola1.ventas("Lana", 1);
+
        System.out.println(cola1);
+       cola1.modificarStock("Lana",cant);
+       cola1.modificarPrecio("Pompon", 15);
        
+       cola1.aumentarPrecioTodos(10);
+       System.out.println(cola1);     
 
       
    }

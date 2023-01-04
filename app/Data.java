@@ -19,8 +19,11 @@ public class Data{
         public boolean esVacia(){
             return (cant == 0);
         }
-    
-        public void agregarProducto(String name, int precio, int cantidad){
+        
+        /*
+         * Metodo que carga un articulo con su precio y cantidad en stock
+         */
+        public void agregarProducto(String name, float precio, int cantidad){
             Nodo<String> nodo = new Nodo<String>(name); 
             Producto articulo = new Producto(cantidad, precio);
             
@@ -48,10 +51,63 @@ public class Data{
             }   
         }
 
+        /*
+         * Metodo que aumenta el precio a un producto, ingresando un porsentaje de aumento
+         */
         public void aumentarPrecio(String name, int aumento){
             (producto.get(name)).UpdatePrecio(aumento);
         }
-        
+
+        /*
+         * Metodo que aumenta el precio a un producto, ingresando un porsentaje de aumento
+         */
+        public void aumentarPrecioTodos(int aumento){
+            Nodo<String> aux = head;
+            int i=0;
+            while(i < elementos()){
+                (producto.get(aux.getInfo())).UpdatePrecio(aumento);
+                aux = aux.getNext();
+                i++;
+            }
+        }
+
+        /*
+         * Metodo para decrementar el stock por una venta
+        */
+        public void ventas(String art, int cant){
+            if((producto.get(art)).Getcant() != 0){
+                (producto.get(art)).Stock(cant);
+            } else {
+                System.out.println("Sin stock");
+            }
+        }
+
+        /*
+         * Metodo para incrementar el stock
+        */
+        public void modificarStock(String art, int cant){
+            (producto.get(art)).UpdateStock(cant);
+        }
+
+        /*
+         * Metodo para modificar el precio, no es lo mismo que aumento
+        */
+        public void modificarPrecio(String art, float precio){
+            if(producto.containsKey(art)){
+                (producto.get(art)).ChangePrecio(precio);
+            } else {
+                System.out.println("Producto inexistente");
+            }
+        }
+
+        public void menu(){
+
+            System.out.println("\t\tMENU");
+            System.out.println("1) Ingresar articulos.\n2) Modificar stock. \n3) Aumentar precio de un producto. \n4) Aumentar el precio de todos los productos");
+            System.out.println("5) Modificar el precio de un producto.\n6) Hacer una venta.\n7) Mostrar lista de articulos. \n8) Salir.");
+        }
+
+
         //No anda
         public void eliminarProducto(String name){  
             Nodo<String> elim = new Nodo<String>();
@@ -106,6 +162,11 @@ public class Data{
                    System.out.println("El producto -" + name + " no existe. \n");
                 }      
         } */
+
+        public void limpiar(){
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+        }
      
         public int elementos(){
             return cant;
