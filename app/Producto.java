@@ -7,6 +7,7 @@ public class Producto{
 
     private float precio;
     private int cant; 
+    private float vendido;
 
     public Producto(int cant, float precio){
         this.cant = cant;
@@ -21,9 +22,17 @@ public class Producto{
     public int Getcant(){
         return cant;
     }
-
+    
     public float GetPrecio(){
         return precio;
+    }
+    
+    public float GetVendido(){
+        return vendido;
+    }
+
+    public void SetVendido(float ventas){
+        vendido = vendido + ventas;
     }
 
     public void Setcant( int cant){
@@ -33,13 +42,19 @@ public class Producto{
     public void SetPrecio(float precio){
         this.precio = precio;
     }
+    
 
     public void UpdatePrecio(int aumento){
         precio = precio + ((precio * aumento)/100);
     }
 
     public void Stock(int cant){
-        this.cant = this.cant - cant;
+        this.cant = this.cant - cant;        
+    }
+
+    public float Ventas(int cant){
+        vendido = vendido + cant * precio;
+        return vendido;
     }
 
     public void UpdateStock(int cant){
