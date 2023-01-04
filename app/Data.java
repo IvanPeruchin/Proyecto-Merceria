@@ -55,7 +55,11 @@ public class Data{
          * Metodo que aumenta el precio a un producto, ingresando un porsentaje de aumento
          */
         public void aumentarPrecio(String name, int aumento){
-            (producto.get(name)).UpdatePrecio(aumento);
+            if(producto.containsKey(name)){
+                (producto.get(name)).UpdatePrecio(aumento);
+            } else {
+                System.out.println("Producto inexistente");
+            }
         }
 
         /*
@@ -86,7 +90,11 @@ public class Data{
          * Metodo para incrementar el stock
         */
         public void modificarStock(String art, int cant){
-            (producto.get(art)).UpdateStock(cant);
+            if(producto.containsKey(art)){
+                (producto.get(art)).UpdateStock(cant);
+            } else {
+                System.out.println("Producto inexistente");
+            }
         }
 
         /*
