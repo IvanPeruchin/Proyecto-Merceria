@@ -5,6 +5,8 @@ import java.util.HashMap;
 
 public class Data{
 
+    
+
     HashMap<String, Producto> producto = new HashMap<String, Producto>();
       
         private Nodo<String> head;
@@ -19,11 +21,15 @@ public class Data{
         public boolean esVacia(){
             return (cant == 0);
         }
+
+        //ARCHIVO
+        //Abre el a      
         
+      
         /*
          * Metodo que carga un articulo con su precio y cantidad en stock
          */
-        public void agregarProducto(String name, float precio, int cantidad){
+        public void agregarProducto(String name, float precio, int cantidad){ 
             Nodo<String> nodo = new Nodo<String>(name); 
             Producto articulo = new Producto(cantidad, precio);
             
@@ -46,9 +52,10 @@ public class Data{
                     aux.setNext(nodo); 
                     cant++;                   
                 }
+                
             } else {
                 System.out.println("Producto ya cargado. \n");
-            }   
+            }
         }
             
 
@@ -110,30 +117,21 @@ public class Data{
          * Metodo para incrementar el stock
         */
         public void modificarStock(String art, int cant){
-            if(producto.containsKey(art)){
-                (producto.get(art)).UpdateStock(cant);
-            } else {
-                System.out.println("Producto inexistente");
-            }
+            (producto.get(art)).UpdateStock(cant);
         }
 
         /*
          * Metodo para modificar el precio, no es lo mismo que aumento
         */
-        public void modificarPrecio(String art, float precio){
-            if(producto.containsKey(art)){
-                (producto.get(art)).ChangePrecio(precio);
-            } else {
-                System.out.println("Producto inexistente");
-            }
+        public void modificarPrecio(String art, float precio){           
+            (producto.get(art)).ChangePrecio(precio);            
         }
 
+        /*
+         * Metodo para consultar los datos de un articulo
+        */
         public void Consultar(String art){
-            if(producto.containsKey(art)){
-                System.out.println(producto.get(art));
-            } else {
-                System.out.println("Producto inexistente");
-            }
+            System.out.println(producto.get(art));
         }
 
         public void menu(){
@@ -141,6 +139,11 @@ public class Data{
             System.out.println("\t\tMENU");
             System.out.println("1) Ingresar articulos.\n2) Modificar stock. \n3) Aumentar precio de un producto. \n4) Aumentar el precio de todos los productos");
             System.out.println("5) Modificar el precio de un producto.\n6) Hacer una venta.\n7) Mostrar lista de articulos. \n8) Consultar articulo, \n9) Salir.");
+        }
+
+        //Metodo para ver si un articulo pertenece a la lista
+        public Boolean pertenece(String name){
+            return producto.containsKey(name);
         }
 
 
@@ -166,8 +169,8 @@ public class Data{
                     producto.remove(name);
                 } else {
                     System.out.println("entre al else");
-                    //Nodo<String> aux = head;
-                    head = elim.getNext();
+                    Nodo<String> aux = head;
+                    head.setNext(aux.getNext());
                 }   
             }
         }

@@ -49,7 +49,11 @@ public class Producto{
     }
 
     public void Stock(int cant){
-        this.cant = this.cant - cant;        
+        if((this.cant - cant)<0){
+            System.out.println("Stock insuficiente");
+        } else {
+            this.cant = this.cant - cant;        
+        }
     }
 
     public float Ventas(int cant){
@@ -64,6 +68,7 @@ public class Producto{
     public void ChangePrecio(float precio){
         this.precio = precio;
     }
+
 
     @Override
 	public String toString(){
