@@ -4,3 +4,7 @@ Lana|12.0|12
 Pompon|120.0|20
 Lana|10.0|10
 Lana|10.0|10
+Lana|126.9|20
+Pompones|220.0|150
+Agujas |39.99|15
+Hilo|150.0|49
