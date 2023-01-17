@@ -31,7 +31,7 @@ public class Main2{
             //agregar articulo
             if(op == 1){
                 try {
-                    FileWriter fw = new FileWriter("app\\Archivo.txt",true);           
+                    FileWriter fw = new FileWriter("Archivo.txt",true);           
                     System.out.println("Cuantos articulos queres cargar? ");
                     cantidad = cnt.nextInt();
                     Merceria.limpiar();
@@ -42,6 +42,11 @@ public class Main2{
                         System.out.print("Nombre: ");
                         nombre = nm.nextLine();
                         
+                        while(Merceria.pertenece(nombre)){
+                            System.out.print(nombre + " ya existe, por favor ingrese otro articulo:  ");
+                            nombre = nm.nextLine();
+                        }
+
                         System.out.print("\nPrecio: ");
                         precio = sc.nextFloat();
                         
@@ -69,14 +74,16 @@ public class Main2{
                 } else {
                     System.out.println("Articulo: ");
                     nombre = nm.nextLine();                        
-                    if(Merceria.pertenece(nombre)){
-                        System.out.println("\n Stock ingresado: ");
-                        cant = sc.nextInt();
-                        Merceria.modificarStock(nombre, cant);
-                        Merceria.limpiar();                    
-                    } else {
-                        System.out.println("Producto inexistente");
-                    }
+                    while(!(Merceria.pertenece(nombre))){
+                        System.out.println("Producto inexistente, ingrese uno valido");
+                        System.out.println("Articulo: ");
+                        nombre = nm.nextLine();
+                    } 
+                    System.out.println("\n Stock ingresado: ");
+                    cant = sc.nextInt();
+                    Merceria.modificarStock(nombre, cant);
+                    Merceria.limpiar();                    
+                    
                 }
             }
 
@@ -87,14 +94,16 @@ public class Main2{
                 } else {
                     System.out.println("Articulo: ");
                     nombre = nm.nextLine();
-                    if(Merceria.pertenece(nombre)){
-                        System.out.println("\n Porcentaje de aumento: ");
-                        aumento = sc.nextInt();
-                        Merceria.aumentarPrecio(nombre, aumento);
-                        Merceria.limpiar();                        
-                    } else {
-                        System.out.println("Producto inexistente");
-                    }
+                    while(!(Merceria.pertenece(nombre))){
+                        System.out.println("Producto inexistente, ingrese uno valido");
+                        System.out.println("Articulo: ");
+                        nombre = nm.nextLine();
+                    } 
+                    System.out.println("\n Porcentaje de aumento: ");
+                    aumento = sc.nextInt();
+                    Merceria.aumentarPrecio(nombre, aumento);
+                    Merceria.limpiar();                        
+                   
                 }
             }
 
@@ -117,14 +126,16 @@ public class Main2{
                 } else {
                     System.out.println("Articulo: ");
                     nombre = nm.nextLine();
-                    if(Merceria.pertenece(nombre)){
-                        System.out.println("\n Precio nuevo22: ");
-                        precio = sc.nextFloat();
-                        Merceria.modificarPrecio(nombre, precio);
-                        Merceria.limpiar();                        
-                    } else {
-                        System.out.println("Producto inexistente");
-                    }
+                    while(!(Merceria.pertenece(nombre))){
+                        System.out.println("Producto inexistente, ingrese uno valido");
+                        System.out.println("Articulo: ");
+                        nombre = nm.nextLine();
+                    } 
+                    System.out.println("\n Precio nuevo: ");
+                    precio = sc.nextFloat();
+                    Merceria.modificarPrecio(nombre, precio);
+                    Merceria.limpiar();                        
+                   
                 }
             }
 
@@ -138,23 +149,19 @@ public class Main2{
                     while(x != 'S'){
                         System.out.println("Articulo: ");
                         nombre = nm.nextLine();
-                        if(Merceria.pertenece(nombre)){                        
-                            System.out.println("Cantidad vendidas: ");
-                            cant = sc.nextInt();
-                            Merceria.ventas(nombre, cant);
-                            System.out.println("Precione N para seguir, Precione S para salir");
-                            x = cnt.next().charAt(0);
-                            salida += "Articulo: " + nombre + "Cantidad: " + cant + "Total: $" + Merceria.vendido(nombre) + "\n";
-                        } else {
-                            System.out.println("Producto inexistente");
-                            System.out.println("Precione N para seguir, Precione S para salir");
-                            x = cnt.next().charAt(0);
-                        }
-                    }  
-                    System.out.println(salida);                
-                    
-            
-                    //Merceria.limpiar();
+                        while(!(Merceria.pertenece(nombre))){
+                            System.out.println("Producto inexistente, ingrese uno valido");
+                            System.out.println("Articulo: ");
+                            nombre = nm.nextLine();
+                        }                        
+                        System.out.println("Cantidad vendidas: ");
+                        cant = sc.nextInt();
+                        Merceria.ventas(nombre, cant);
+                        System.out.println("Precione N para seguir, Precione S para salir");
+                        x = cnt.next().charAt(0);
+                        salida += "Articulo: " + nombre + " /Cantidad: " + cant + " /Total: $" + Merceria.vendido(nombre) + "\n";
+                    } 
+                        System.out.println(salida); 
                 }
             }
 
@@ -181,11 +188,16 @@ public class Main2{
 
             if(op == 9){
                 Merceria.limpiar();
-                break;
             }
-        }
 
-       
+            if(op == 10){
+                System.out.println("Articulo: ");
+                nombre = nm.nextLine();
+                Merceria.eliminarProducto(nombre);
+            }
+        
+        }
+    }     
       
-   }
 }
+

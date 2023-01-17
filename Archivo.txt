@@ -1,0 +1,6 @@
+Lana|120.0|20
+Corderito|12.0|20
+Lana|12.0|12
+Pompon|120.0|20
+Lana|10.0|10
+Lana|10.0|10

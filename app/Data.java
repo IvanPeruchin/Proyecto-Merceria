@@ -72,17 +72,12 @@ public class Data{
 
         /*
          * Metodo que aumenta el precio a un producto, ingresando un porsentaje de aumento
-         */
-        //no anda
+        */
         public void aumentarPrecioTodos(int aumento){
             Nodo<String> aux = head;
-            int i=0;
-            String name = ""; 
-            while(i < elementos()){
-                name = aux.getInfo();
-                aumentarPrecio(name, aumento);               
+            while(aux != null ){              
+                aumentarPrecio(  aux.getInfo(), aumento);               
                 aux = aux.getNext();
-                i++;
             }
         }
 
@@ -138,7 +133,7 @@ public class Data{
 
             System.out.println("\t\tMENU");
             System.out.println("1) Ingresar articulos.\n2) Modificar stock. \n3) Aumentar precio de un producto. \n4) Aumentar el precio de todos los productos");
-            System.out.println("5) Modificar el precio de un producto.\n6) Hacer una venta.\n7) Mostrar lista de articulos. \n8) Consultar articulo, \n9) Salir.");
+            System.out.println("5) Modificar el precio de un producto.\n6) Hacer una venta.\n7) Mostrar lista de articulos. \n8) Consultar articulo, \n9) Salir., \n 10 prueba elim produc");
         }
 
         //Metodo para ver si un articulo pertenece a la lista
