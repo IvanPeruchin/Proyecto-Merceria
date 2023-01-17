@@ -1,0 +1,16 @@
+Lana|122.5|20
+Pompon|230.0|20
+Lana|12.0|12
+Lana|12.0|2
+Lana|12.0|2
+Lana|12.0|2
+Lana|120.0|20
+Pompones|280.7|20
+Aguja |200.0|10
+Lana|20.0|10
+Pompones|120.0|20
+Carton|30.0|10
+Lana|12.0|12
+Pompon|12.0|12
+Aguja|12.0|12
+Carton|12.0|12

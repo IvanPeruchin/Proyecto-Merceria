@@ -1,5 +1,8 @@
 package app;
 
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 public class Main2{
 
@@ -27,6 +30,8 @@ public class Main2{
 
             //agregar articulo
             if(op == 1){
+                try {
+                    FileWriter fw = new FileWriter("app\\Archivo.txt",true);           
                     System.out.println("Cuantos articulos queres cargar? ");
                     cantidad = cnt.nextInt();
                     Merceria.limpiar();
@@ -45,10 +50,15 @@ public class Main2{
                         
                         Merceria.agregarProducto(nombre, precio, cant);
                         System.out.print(Merceria);
-    
+                        
+                        fw.write(nombre + "|" + precio + "|" + cant + "\n");
                         Merceria.limpiar();
                         i++;
                     }
+                    fw.close();                  
+                } catch (IOException e) { 
+                    System.out.println("Error e/S " +e);
+                }
                 
             }
 

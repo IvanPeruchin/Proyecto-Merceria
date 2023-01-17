@@ -51,6 +51,7 @@ public class Producto{
     public void Stock(int cant){
         if((this.cant - cant)<0){
             System.out.println("Stock insuficiente");
+            System.out.println("Stock actual " + this.cant);
         } else {
             this.cant = this.cant - cant;        
         }

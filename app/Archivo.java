@@ -39,7 +39,15 @@ public class Archivo {
             System.out.println("Error e/S " +e);
         }    
         
-      
+        try {
+            FileWriter fw = new FileWriter("app\\Archivo.txt",true);           
+            fw.close();         
+            FileReader fr = new FileReader("app\\Archivo.txt");           
+            fr.close();          
+        } catch (IOException e) { 
+            System.out.println("Error e/S " +e);
+        }    
+        
       
     }
 

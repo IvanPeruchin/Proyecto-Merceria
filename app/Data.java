@@ -81,7 +81,7 @@ public class Data{
             while(i < elementos()){
                 name = aux.getInfo();
                 aumentarPrecio(name, aumento);               
-                aux.setNext(aux.getNext());
+                aux = aux.getNext();
                 i++;
             }
         }
