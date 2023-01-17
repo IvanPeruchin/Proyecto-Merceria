@@ -59,6 +59,27 @@ public class Data{
                 System.out.println("Producto ya cargado. \n");
             }
         }
+
+        /*
+         * Cambiar el nombre de un producto
+        */
+        public void cambiarNombre(String name, String newName){
+            if(producto.containsKey(name)){
+                Nodo<String> aux = head;
+                int i = 0;
+                while(i < elementos()){
+                    if(aux.getInfo().equals(name)){
+                        aux.setInfo(newName);
+                    } else {
+                        i++;
+                        aux = aux.getNext();
+                    }
+                }
+                System.out.println(name + " fue reemplazado por " + newName);
+                producto.put(newName, producto.get(name));
+
+            }
+        }
             
 
         /*
@@ -156,7 +177,7 @@ public class Data{
 
             System.out.println("\t\tMENU");
             System.out.println("1) Ingresar articulos.\n2) Modificar stock. \n3) Aumentar precio de un producto. \n4) Aumentar el precio de todos los productos");
-            System.out.println("5) Modificar el precio de un producto.\n6) Hacer una venta.\n7) Mostrar lista de articulos. \n8) Consultar articulo, \n9) Salir.");
+            System.out.println("5) Modificar el precio de un producto.\n6) Hacer una venta.\n7) Mostrar lista de articulos. \n8) Consultar articulo. \n9) Salir. \n10) Cambiar nombre de un articulo.");
         }
 
         //Metodo para ver si un articulo pertenece a la lista

@@ -204,9 +204,12 @@ public class Main2{
             }
 
             if(op == 10){
-                System.out.println("Articulo: ");
+                String newName;
+                System.out.println("Articulo que dese modificar: ");
                 nombre = nm.nextLine();
-                Merceria.eliminarProducto(nombre);
+                System.out.println("uevo nombre: ");
+                newName = nm.nextLine();
+                Merceria.cambiarNombre(nombre,newName);
             }        
         }
     }            
