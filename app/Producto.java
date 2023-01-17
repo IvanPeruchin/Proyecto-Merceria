@@ -6,12 +6,16 @@ package app;
 public class Producto{
 
     private float precio;
-    private int cant; 
+    private float cant; 
     private float vendido;
+    private String tipoVenta;
 
-    public Producto(int cant, float precio){
-        this.cant = cant;
+
+    //Constructor para un producto
+    public Producto(float cant2, float precio, String venta){
+        this.cant = cant2;
         this.precio = precio;
+        this.tipoVenta = venta;
     }
 
     public Producto(){
@@ -19,51 +23,64 @@ public class Producto{
         precio = 0;
     }
 
-    public int Getcant(){
+    //getter para la cantidad de elemento
+    public float Getcant(){
         return cant;
     }
     
+    //setter para la cantidad de elemento
     public float GetPrecio(){
         return precio;
     }
     
+    //getter para la cantidad de ventas de un elemento
     public float GetVendido(){
         return vendido;
     }
 
+    //setter para la cantidad de ventas de un elemento
     public void SetVendido(float ventas){
-        vendido = vendido + ventas;
+        this.vendido = this.vendido + ventas;
     }
 
-    public void Setcant( int cant){
-        this.cant = cant;
+    //setter para la cantidad de elemento
+    public void Setcant( float cant2){
+        this.cant = cant2;
     }
 
+    //getter para el precio de  un elemento
     public void SetPrecio(float precio){
         this.precio = precio;
     }
     
 
-    public void UpdatePrecio(int aumento){
-        precio = precio + ((precio * aumento)/100);
+    public void UpdatePrecio(float cant2){
+        precio = precio + ((precio * cant2)/100);
     }
 
-    public void Stock(int cant){
-        if((this.cant - cant)<0){
+    public String GetTipoVenta(){
+        return tipoVenta;
+    }
+    public void SetTipoVenta(String tipoVenta){
+        this.tipoVenta = tipoVenta;
+    }
+
+
+    public void Stock(float cant2){
+        if((this.cant - cant2)<0){
             System.out.println("Stock insuficiente");
             System.out.println("Stock actual " + this.cant);
         } else {
-            this.cant = this.cant - cant;        
+            this.cant = this.cant - cant2;        
         }
     }
 
-    public float Ventas(int cant){
-        vendido = vendido + cant * precio;
-        return vendido;
+    public float Ventas(float cant2){
+        return (cant2 * this.precio);
     }
 
-    public void UpdateStock(int cant){
-        this.cant = this.cant + cant;
+    public void UpdateStock(float cant2){
+        this.cant = this.cant + cant2;
     }
 
     public void ChangePrecio(float precio){
@@ -76,6 +93,7 @@ public class Producto{
 		String res = "";
         res += "Precio: $" + precio;
         res += ", Cantidad: " + cant;
+        res += ", Venta por " + tipoVenta;
         return res;
 	}
 }

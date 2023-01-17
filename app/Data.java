@@ -29,14 +29,15 @@ public class Data{
         /*
          * Metodo que carga un articulo con su precio y cantidad en stock
          */
-        public void agregarProducto(String name, float precio, int cantidad){ 
+        public void agregarProducto(String name, float precio, float cant2, String tipoVenta){ 
             Nodo<String> nodo = new Nodo<String>(name); 
-            Producto articulo = new Producto(cantidad, precio);
+            Producto articulo = new Producto(cant2, precio, tipoVenta);
             
             if(!(producto.containsKey(name))){
                 if(esVacia()){
                     articulo.SetPrecio(precio);
-                    articulo.Setcant(cantidad);
+                    articulo.Setcant(cant2);
+                    articulo.SetTipoVenta(tipoVenta);
                     producto.put(name, articulo);
                     head = nodo;
                     cant++;
@@ -46,7 +47,8 @@ public class Data{
                         aux = aux.getNext();
                     }          
                     articulo.SetPrecio(precio);
-                    articulo.Setcant(cantidad);
+                    articulo.Setcant(cant2);
+                    articulo.SetTipoVenta(tipoVenta);
                     producto.put(name, articulo);
 
                     aux.setNext(nodo); 
@@ -62,9 +64,9 @@ public class Data{
         /*
          * Metodo que aumenta el precio a un producto, ingresando un porsentaje de aumento
          */
-        public void aumentarPrecio(String name, int aumento){
+        public void aumentarPrecio(String name, float cant2){
             if(producto.containsKey(name)){
-                (producto.get(name)).UpdatePrecio(aumento);
+                (producto.get(name)).UpdatePrecio(cant2);
             } else {
                 System.out.println("Producto inexistente");
             }
@@ -73,10 +75,10 @@ public class Data{
         /*
          * Metodo que aumenta el precio a un producto, ingresando un porsentaje de aumento
         */
-        public void aumentarPrecioTodos(int aumento){
+        public void aumentarPrecioTodos(float cant2){
             Nodo<String> aux = head;
             while(aux != null ){              
-                aumentarPrecio(  aux.getInfo(), aumento);               
+                aumentarPrecio(  aux.getInfo(), cant2);               
                 aux = aux.getNext();
             }
         }
@@ -84,23 +86,24 @@ public class Data{
         /*
          * Metodo para decrementar el stock por una venta
         */
-        public void ventas(String art, int cant){
+        public void ventas(String art, float cant2){
             
             if((producto.get(art)).Getcant() != 0){
-                (producto.get(art)).Stock(cant); 
-                (producto.get(art)).SetVendido(cant); 
+                (producto.get(art)).Stock(cant2); 
+                (producto.get(art)).SetVendido(cant2); 
             } else {
                 System.out.println("Sin stock");
             }
         }
 
+
         /*
          * Metodo para mostrar la cantidad de ventas de un articulo
         */
-        public Float vendido(String art){
+        public Float vendido(String art, float cant2){
             
-            if((producto.get(art)).Getcant() != 0){
-               return ((producto.get(art)).Ventas(cant));                
+            if((producto.get(art)).Getcant() > 0){
+               return ((producto.get(art)).Ventas(cant2));                
             } else {
                 System.out.println("Sin stock");
             }
@@ -111,8 +114,8 @@ public class Data{
         /*
          * Metodo para incrementar el stock
         */
-        public void modificarStock(String art, int cant){
-            (producto.get(art)).UpdateStock(cant);
+        public void modificarStock(String art, float cant2){
+            (producto.get(art)).UpdateStock(cant2);
         }
 
         /*
@@ -129,11 +132,31 @@ public class Data{
             System.out.println(producto.get(art));
         }
 
+        //Metodo para consultar stock
+        public float ConsultarStock(String art){
+            return (producto.get(art)).Getcant();
+        }
+
+        /*
+         * Metodo para consultar el tipo de venta
+        */
+        public String Tipo(String art){
+            return ((producto.get(art)).GetTipoVenta());
+        }
+
+         /*
+         * Metodo para consultar el precio por unidad de un articulo
+        */
+        public Float PrecioUnitario(String art){
+            return ((producto.get(art)).GetPrecio());
+        }
+
+        //Menu
         public void menu(){
 
             System.out.println("\t\tMENU");
             System.out.println("1) Ingresar articulos.\n2) Modificar stock. \n3) Aumentar precio de un producto. \n4) Aumentar el precio de todos los productos");
-            System.out.println("5) Modificar el precio de un producto.\n6) Hacer una venta.\n7) Mostrar lista de articulos. \n8) Consultar articulo, \n9) Salir., \n 10 prueba elim produc");
+            System.out.println("5) Modificar el precio de un producto.\n6) Hacer una venta.\n7) Mostrar lista de articulos. \n8) Consultar articulo, \n9) Salir.");
         }
 
         //Metodo para ver si un articulo pertenece a la lista

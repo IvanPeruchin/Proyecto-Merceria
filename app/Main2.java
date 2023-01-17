@@ -1,6 +1,6 @@
 package app;
 
-import java.io.FileReader;
+//import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -14,9 +14,11 @@ public class Main2{
         Data Merceria = new Data();
 
         String nombre = "";
+        String venta = "";
         float precio = 0;
         int aumento = 0;
-        int cant, cantidad = 0;
+        float cant;
+        int cantidad = 0;
         int op = 0;
 
         
@@ -52,8 +54,11 @@ public class Main2{
                         
                         System.out.print("\nStock: ");
                         cant = sc.nextInt();
+
+                        System.out.print("\nTipo de venta(metro o unidad): ");
+                        venta = nm.nextLine();
                         
-                        Merceria.agregarProducto(nombre, precio, cant);
+                        Merceria.agregarProducto(nombre, precio, cant, venta);
                         System.out.print(Merceria);
                         
                         fw.write(nombre + "|" + precio + "|" + cant + "\n");
@@ -141,6 +146,7 @@ public class Main2{
 
             //hacer una venta
             if(op == 6){
+                float ventaTotal = 0;
                 if(Merceria.esVacia()){
                     System.out.println("-Sin articulos-");
                 } else {   
@@ -155,13 +161,20 @@ public class Main2{
                             nombre = nm.nextLine();
                         }                        
                         System.out.println("Cantidad vendidas: ");
-                        cant = sc.nextInt();
+                        cant = sc.nextFloat();
                         Merceria.ventas(nombre, cant);
-                        System.out.println("Precione N para seguir, Precione S para salir");
+                        if(Merceria.ConsultarStock(nombre) > cant){
+                            System.out.println(Merceria.ConsultarStock(nombre));
+                            salida += "Articulo: " + nombre + " /Cantidad por " + Merceria.Tipo(nombre) + ": " + cant + " /Precio por " + Merceria.Tipo(nombre) + ": $" + Merceria.PrecioUnitario(nombre) +  " /Total: $" + Merceria.vendido(nombre, cant) + "\n";
+                            ventaTotal = ventaTotal + (cant*Merceria.PrecioUnitario(nombre));
+                            System.out.println(salida); 
+                        }
+                        System.out.println("\nPrecione N para seguir, Precione S para salir");
                         x = cnt.next().charAt(0);
-                        salida += "Articulo: " + nombre + " /Cantidad: " + cant + " /Total: $" + Merceria.vendido(nombre) + "\n";
-                    } 
-                        System.out.println(salida); 
+                    }
+                    Merceria.limpiar(); 
+                    salida += "\n Precio final de ventas: " + ventaTotal; 
+                    System.out.println(salida); 
                 }
             }
 
