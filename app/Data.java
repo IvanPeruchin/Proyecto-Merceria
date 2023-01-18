@@ -1,6 +1,11 @@
 package app;
 
 import java.util.HashMap;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 
 public class Data{
@@ -70,13 +75,14 @@ public class Data{
                 while(i < elementos()){
                     if(aux.getInfo().equals(name)){
                         aux.setInfo(newName);
+                        producto.put(newName, producto.get(name));
                     } else {
                         i++;
                         aux = aux.getNext();
                     }
                 }
                 System.out.println(name + " fue reemplazado por " + newName);
-                producto.put(newName, producto.get(name));
+                
 
             }
         }
@@ -185,62 +191,7 @@ public class Data{
             return producto.containsKey(name);
         }
 
-
-        //No anda
-        public void eliminarProducto(String name){  
-            Nodo<String> elim = new Nodo<String>();
-        
-            if(esVacia()){
-                System.out.println("Sin articulos");
-            } else{ 
-                elim = head;
-                if(!(head.getInfo().equals(name))){
-                    System.out.println("entre al if");
-                    while((name.equals(elim.getInfo())) && (elim != null)){
-                        elim.setNext(elim.getNext());
-                        System.out.println("estoy en el while");
-                    }
-                    System.out.println("sali del while");
-                    Nodo<String> aux = elim.getNext();
-        
-                    elim.setNext(aux.getNext());
-                    cant--;
-                    producto.remove(name);
-                } else {
-                    System.out.println("entre al else");
-                    Nodo<String> aux = head;
-                    head.setNext(aux.getNext());
-                }   
-            }
-        }
-    
-      /* public void eliminarProducto(String name){  
-            Nodo<String> elim = new Nodo<String>();
-     
-            if(esVacia()){
-                System.out.println("Sin articulos");
-            } else 
-                if(producto.containsKey(name)){
-                    if(elementos() > 1){
-                        elim = head;
-                        while(name.equals(elim.getInfo()) && elim != null){
-                            elim.setNext(elim.getNext());
-                        }
-                        System.out.println("hola");
-                        Nodo<String> aux = elim.getNext();
-
-                        elim.setNext(aux.getNext());
-                        cant--;
-                        producto.remove(name);
-                    } else {
-                        Nodo<String> aux = head;
-                        head = aux.getNext();
-                    }
-                } else {
-                   System.out.println("El producto -" + name + " no existe. \n");
-                }      
-        } */
-
+        //Limpia la pantalla
         public void limpiar(){
             System.out.print("\033[H\033[2J");
             System.out.flush();
@@ -254,6 +205,16 @@ public class Data{
             head.setNext(head);
             cant = 0;
             producto = null; 
+        }
+
+
+
+        /*
+         *Metodo para cargar un archivo en una lista 
+        */
+        
+        public void CargarArchivo(String name, Nodo<String> list){
+             
         }
         
         @Override

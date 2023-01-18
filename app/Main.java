@@ -1,10 +1,13 @@
 package app;
 
-//import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import java.util.ArrayList;
 import java.util.Scanner;
-public class Main2{
+public class Main{
 
     public static void main(String[] args){
         
@@ -19,7 +22,7 @@ public class Main2{
         int aumento = 0;
         float cant;
         int cantidad = 0;
-        int op = 0;
+        int op = 1;
 
         
 
@@ -29,6 +32,13 @@ public class Main2{
             System.out.println("\n -Ingrese la opcion que desea");
             op = sc.nextInt();
             Merceria.limpiar();
+            while(op < 0 || op > 10){
+                System.out.println("\n - Opcion correcta!! ");
+                Merceria.menu();
+                System.out.println("\n -Ingrese la opcion que desea");
+                op = sc.nextInt();
+                Merceria.limpiar();
+            }
 
             //agregar articulo
             if(op == 1){
@@ -136,7 +146,7 @@ public class Main2{
                         System.out.println("Articulo: ");
                         nombre = nm.nextLine();
                     } 
-                    System.out.println("\n Precio nuevo: ");
+                    System.out.println("\nPrecio nuevo: ");
                     precio = sc.nextFloat();
                     Merceria.modificarPrecio(nombre, precio);
                     Merceria.limpiar();                        
@@ -146,36 +156,42 @@ public class Main2{
 
             //hacer una venta
             if(op == 6){
-                float ventaTotal = 0;
-                if(Merceria.esVacia()){
-                    System.out.println("-Sin articulos-");
-                } else {   
-                    String salida = "";
-                    char x = '0';
-                    while(x != 'S'){
-                        System.out.println("Articulo: ");
-                        nombre = nm.nextLine();
-                        while(!(Merceria.pertenece(nombre))){
-                            System.out.println("Producto inexistente, ingrese uno valido");
+                try {
+                    FileWriter arch = new FileWriter("Ventas.txt",true);           
+                    float ventaTotal = 0;
+                    if(Merceria.esVacia()){
+                        System.out.println("-Sin articulos-");
+                    } else {   
+                        String salida = "";
+                        char x = '0';
+                        while(x != 'S'){
                             System.out.println("Articulo: ");
                             nombre = nm.nextLine();
-                        }                        
-                        System.out.println("Cantidad vendidas: ");
-                        cant = sc.nextFloat();
-                        Merceria.ventas(nombre, cant);
-                        if(Merceria.ConsultarStock(nombre) > cant){
-                            System.out.println(Merceria.ConsultarStock(nombre));
-                            salida += "Articulo: " + nombre + " /Cantidad por " + Merceria.Tipo(nombre) + ": " + cant + " /Precio por " + Merceria.Tipo(nombre) + ": $" + Merceria.PrecioUnitario(nombre) +  " /Total: $" + Merceria.vendido(nombre, cant) + "\n";
-                            ventaTotal = ventaTotal + (cant*Merceria.PrecioUnitario(nombre));
-                            System.out.println(salida); 
+                            while(!(Merceria.pertenece(nombre))){
+                                System.out.println("Producto inexistente, ingrese uno valido");
+                                System.out.println("Articulo: ");
+                                nombre = nm.nextLine();
+                            }                        
+                            System.out.println("Cantidad vendidas: ");
+                            cant = sc.nextFloat();
+                            Merceria.ventas(nombre, cant);
+                            if(Merceria.ConsultarStock(nombre) > cant){
+                                salida += "Articulo: " + nombre + " /Cantidad por " + Merceria.Tipo(nombre) + ": " + cant + " /Precio por " + Merceria.Tipo(nombre) + ": $" + Merceria.PrecioUnitario(nombre) +  " /Total: $" + Merceria.vendido(nombre, cant) + "\n";
+                                ventaTotal = ventaTotal + (cant*Merceria.PrecioUnitario(nombre));
+                                System.out.println(salida); 
+                            }
+                            System.out.println("\nPrecione N para seguir, Precione S para salir");
+                            x = cnt.next().charAt(0);
+                            arch.write(nombre + "|" + cant + "|" + Merceria.vendido(nombre, cant) + "|" + "\n");
                         }
-                        System.out.println("\nPrecione N para seguir, Precione S para salir");
-                        x = cnt.next().charAt(0);
+                        Merceria.limpiar(); 
+                        salida += "\nPrecio final de ventas: $" + ventaTotal; 
+                        System.out.println(salida); 
+                        arch.close();                              
                     }
-                    Merceria.limpiar(); 
-                    salida += "\n Precio final de ventas: " + ventaTotal; 
-                    System.out.println(salida); 
-                }
+                } catch (IOException e) { 
+                    System.out.println("Error e/S " +e);
+                } 
             }
 
             //Mostrar los articulos
@@ -207,10 +223,36 @@ public class Main2{
                 String newName;
                 System.out.println("Articulo que dese modificar: ");
                 nombre = nm.nextLine();
-                System.out.println("uevo nombre: ");
+                System.out.println("Nuevo nombre: ");
                 newName = nm.nextLine();
                 Merceria.cambiarNombre(nombre,newName);
-            }        
+            }
+            
+            //Mostrar las ventas
+            if(op == 11){                
+                try {   
+                    ArrayList<String> array = new ArrayList<String>();
+                    FileReader fr = new FileReader("Ventas.txt");  
+                    BufferedReader br = new BufferedReader(fr);
+
+                    String linea;
+                    while((linea=br.readLine())!=null){
+                        array.add(linea) ;
+                    }         
+
+                    fr.close(); 
+                    br.close();   
+
+                    int i=0;
+                    while(i < array.size()){
+                        System.out.println(array.get(i));
+                        i++;                        
+                    }           
+                } catch (IOException e) { 
+                    System.out.println("Error e/S " +e);
+                } 
+            }
+            
         }
     }            
 }

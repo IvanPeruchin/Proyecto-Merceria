@@ -1,37 +1,12 @@
-Lana|120.0|20
-Corderito|12.0|20
-Lana|12.0|12
-Pompon|120.0|20
-Lana|10.0|10
-Lana|10.0|10
-Lana|126.9|20
-Pompones|220.0|150
-Agujas |39.99|15
-Hilo|150.0|49
-Lana|220.5|20
-Botones|30.0|20
-Lana|220.6|20
-Lana|240.9|50
-Lana|230.9|50
-Aguja|55.0|40
-Lana|128.9|50.0
-Agujas|40.0|30.0
-Lana|220.9|50.0
-Agujas|35.0|20.0
-Lana|220.0|30.0
-Aguja|20.0|50.0
-Lana|220.0|20.0
+Lana|230.0|50.0
+Agujas|56.99|20.0
+Hilo |126.6|25.0
+Cinta|89.9|50.0
+Pompones|127.0|25.0
+Lana|120.9|50.0
+Hilo|226.6|50.0
+Aguja|45.5|25.0
+Pompones|30.0|15.0
+Hilo grueso|90.95|40.0
 Lana|220.0|50.0
-Lana|220.0|50.0
-Aguja|50.0|20.0
-Lana|233.99|50.0
-Aguja|30.0|50.0
-lana|80.0|8.0
-cinta raso|200.0|10.0
-hilo|200.0|8.0
-lana|200.0|3.0
-lana|200.0|10.0
-lana|200.0|10.0
-lana|200.0|10.0
-lana|22.0|22.0
-lana|22.0|22.0
+Aguja|50.0|40.0
