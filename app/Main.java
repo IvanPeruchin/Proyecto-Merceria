@@ -27,12 +27,12 @@ public class Main{
         
 
         
-        while(op != 9){
+        while(op != 11){
             Merceria.menu();
             System.out.println("\n -Ingrese la opcion que desea");
             op = sc.nextInt();
             Merceria.limpiar();
-            while(op < 0 || op > 10){
+            while(op < 0 || op > 11){
                 System.out.println("\n - Opcion correcta!! ");
                 Merceria.menu();
                 System.out.println("\n -Ingrese la opcion que desea");
@@ -214,22 +214,8 @@ public class Main{
                 }
             }
 
-
-            if(op == 9){
-                Merceria.limpiar();
-            }
-
-            if(op == 10){
-                String newName;
-                System.out.println("Articulo que dese modificar: ");
-                nombre = nm.nextLine();
-                System.out.println("Nuevo nombre: ");
-                newName = nm.nextLine();
-                Merceria.cambiarNombre(nombre,newName);
-            }
-            
             //Mostrar las ventas
-            if(op == 11){                
+            if(op == 9){                
                 try {   
                     ArrayList<String> array = new ArrayList<String>();
                     FileReader fr = new FileReader("Ventas.txt");  
@@ -244,6 +230,7 @@ public class Main{
                     br.close();   
 
                     int i=0;
+                    System.out.println("Art|Cantidad|Total");
                     while(i < array.size()){
                         System.out.println(array.get(i));
                         i++;                        
@@ -251,6 +238,21 @@ public class Main{
                 } catch (IOException e) { 
                     System.out.println("Error e/S " +e);
                 } 
+            }
+
+            // Modificar el nombre de un articulo
+            if(op == 10){
+                String newName;
+                System.out.println("Articulo que dese modificar: ");
+                nombre = nm.nextLine();
+                System.out.println("Nuevo nombre: ");
+                newName = nm.nextLine();
+                Merceria.cambiarNombre(nombre,newName);
+            }
+            
+            //Salir
+            if(op == 11){
+                Merceria.limpiar();
             }
             
         }

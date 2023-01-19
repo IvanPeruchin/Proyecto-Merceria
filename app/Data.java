@@ -183,7 +183,7 @@ public class Data{
 
             System.out.println("\t\tMENU");
             System.out.println("1) Ingresar articulos.\n2) Modificar stock. \n3) Aumentar precio de un producto. \n4) Aumentar el precio de todos los productos");
-            System.out.println("5) Modificar el precio de un producto.\n6) Hacer una venta.\n7) Mostrar lista de articulos. \n8) Consultar articulo. \n9) Salir. \n10) Cambiar nombre de un articulo.");
+            System.out.println("5) Modificar el precio de un producto.\n6) Hacer una venta.\n7) Mostrar lista de articulos. \n8) Consultar articulo. \n9) Mostrar ventas. \n10) Cambiar nombre de un articulo. \n11) Salir.");
         }
 
         //Metodo para ver si un articulo pertenece a la lista
@@ -205,16 +205,6 @@ public class Data{
             head.setNext(head);
             cant = 0;
             producto = null; 
-        }
-
-
-
-        /*
-         *Metodo para cargar un archivo en una lista 
-        */
-        
-        public void CargarArchivo(String name, Nodo<String> list){
-             
         }
         
         @Override

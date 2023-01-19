@@ -2,10 +2,11 @@ package app;
 
 
 import java.io.FileWriter;
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+
 
 /**
  *video: Curso Java #38 - FileReader y FileWriter
@@ -48,8 +49,28 @@ public class Archivo {
             System.out.println("Error e/S " +e);
         }    
         
-      
+        try {   
+            ArrayList<String> array = new ArrayList<String>();
+            FileReader fr = new FileReader("Ventas.txt");  
+            BufferedReader br = new BufferedReader(fr);
+
+            String linea;
+            while((linea=br.readLine())!=null){
+                array.add(linea) ;
+            }         
+
+            fr.close(); 
+            br.close();   
+
+            int i=0;
+            while(i < array.size()){
+                System.out.println(array.get(i));
+                i++;                        
+            }           
+        } catch (IOException e) { 
+            System.out.println("Error e/S " +e);
+        } 
+    }
     }
 
       
-}

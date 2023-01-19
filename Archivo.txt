@@ -1,12 +1,4 @@
-Lana|230.0|50.0
-Agujas|56.99|20.0
-Hilo |126.6|25.0
-Cinta|89.9|50.0
-Pompones|127.0|25.0
-Lana|120.9|50.0
-Hilo|226.6|50.0
-Aguja|45.5|25.0
-Pompones|30.0|15.0
-Hilo grueso|90.95|40.0
-Lana|220.0|50.0
-Aguja|50.0|40.0
+
+conos de hilos|399.9|20.0
+cinta bies|79.9|50.0
+cinta raso|149.9|30.0
